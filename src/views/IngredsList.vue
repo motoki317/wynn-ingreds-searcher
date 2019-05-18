@@ -10,7 +10,7 @@
         @click="moveToIngredient(ingred)"
       >
         {{ ingred }}
-        <br>
+        <br />
       </span>
     </div>
     <div v-else-if="error">{{ error }}</div>
@@ -27,15 +27,12 @@ export default {
     return {
       list: null,
       error: null,
-      headers: {
-        Origin: process.env.VUE_APP_ORIGIN,
-        "Access-Control-Request-Method": "GET"
-      }
+      headers: {}
     };
   },
   mounted() {
     axios
-      .get(process.env.VUE_APP_API_ENDPOINT + "/list", {
+      .get("/api/list", {
         headers: this.headers
       })
       .then(response => {

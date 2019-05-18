@@ -13,5 +13,12 @@ module.exports = {
       warnings: true,
       errors: true
     }
+  },
+  modules: ["@nuxtjs/proxy"],
+  proxy: {
+    "/api/": {
+      target: "https://api.wynncraft.com/v2/ingredient",
+      pathRewrite: { "^/api/": "" }
+    }
   }
 };

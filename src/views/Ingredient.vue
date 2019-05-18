@@ -14,7 +14,7 @@
             v-bind:src="
               image + ing.sprite.id + '-' + ing.sprite.damage + '.png'
             "
-          />
+          >
         </div>
       </h1>
       <div class="skills">
@@ -32,8 +32,7 @@
               positive: id.minimum > 0,
               negative: id.minimum < 0
             }"
-            >{{ id.minimum }} ~ {{ id.maximum }}</span
-          >
+          >{{ id.minimum }} ~ {{ id.maximum }}</span>
         </div>
       </div>
       <div class="item-only-ids" v-if="hasItemOnlyIDs">
@@ -46,8 +45,7 @@
                 positive: id > 0,
                 negative: id < 0
               }"
-              >{{ id }}</span
-            >
+            >{{ id }}</span>
           </span>
         </div>
       </div>
@@ -61,8 +59,7 @@
                 positive: id > 0,
                 negative: id < 0
               }"
-              >{{ id }}</span
-            >
+            >{{ id }}</span>
           </span>
         </div>
       </div>
@@ -82,22 +79,14 @@ export default {
       ing: null,
       error: null,
       image: "https://motoki317.github.io/images/vanilla/",
-      headers: {
-        Origin: process.env.VUE_APP_ORIGIN,
-        "Access-Control-Request-Method": "GET"
-      }
+      headers: {}
     };
   },
   mounted() {
     axios
-      .get(
-        process.env.VUE_APP_API_ENDPOINT +
-          "/get/" +
-          this.$route.params.ingredientName,
-        {
-          headers: this.headers
-        }
-      )
+      .get("/api/get/" + this.$route.params.ingredientName, {
+        headers: this.headers
+      })
       .then(response => {
         this.ing = response.data.data[0];
       })
