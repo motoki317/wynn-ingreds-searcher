@@ -17,6 +17,8 @@
           />
         </div>
       </h1>
+      <h3>Level {{ ing.level }} Ingredient</h3>
+
       <div class="skills">
         <h2>Available Professions</h2>
         <div v-for="skill in ing.skills" :key="skill">
