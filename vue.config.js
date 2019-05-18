@@ -3,7 +3,7 @@ module.exports = {
   devServer: {
     proxy: {
       "^/api": {
-        target: "https://api.wynncraft.com/v2/ingredient", // 自分のポートにする
+        target: "https://api.wynncraft.com/v2/ingredient",
         pathRewrite: {
           "^/api/": "/"
         }

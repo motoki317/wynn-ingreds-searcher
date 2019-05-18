@@ -25,10 +25,7 @@ export default {
   },
   mounted() {
     axios
-      .get("/api/list", {
-        "Access-Control-Allow-Origin": "http://localhost:8080",
-        "content-type": "application/json"
-      })
+      .get("/api/list")
       .then(response => {
         this.list = response.data.data;
       })
