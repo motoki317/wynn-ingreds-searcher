@@ -81,7 +81,11 @@ export default {
     return {
       ing: null,
       error: null,
-      image: "https://motoki317.github.io/images/vanilla/"
+      image: "https://motoki317.github.io/images/vanilla/",
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "https://api.wynncraft.com"
+      }
     };
   },
   mounted() {
@@ -89,7 +93,8 @@ export default {
       .get(
         process.env.VUE_APP_API_ENDPOINT +
           "/get/" +
-          this.$route.params.ingredientName
+          this.$route.params.ingredientName,
+        this.headers
       )
       .then(response => {
         this.ing = response.data.data[0];

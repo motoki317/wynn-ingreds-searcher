@@ -20,12 +20,16 @@ export default {
   data() {
     return {
       list: null,
-      error: null
+      error: null,
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "https://api.wynncraft.com"
+      }
     };
   },
   mounted() {
     axios
-      .get(process.env.VUE_APP_API_ENDPOINT + "/list")
+      .get(process.env.VUE_APP_API_ENDPOINT + "/list", this.headers)
       .then(response => {
         this.list = response.data.data;
       })
