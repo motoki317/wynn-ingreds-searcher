@@ -29,7 +29,9 @@ export default {
   },
   mounted() {
     axios
-      .get(process.env.VUE_APP_API_ENDPOINT + "/list", this.headers)
+      .get(process.env.VUE_APP_API_ENDPOINT + "/list", {
+        headers: this.headers
+      })
       .then(response => {
         this.list = response.data.data;
       })
