@@ -89,14 +89,9 @@ export default {
   },
   mounted() {
     axios
-      .get(
-        process.env.VUE_APP_API_ENDPOINT +
-          "/get/" +
-          this.$route.params.ingredientName,
-        {
-          headers: this.headers
-        }
-      )
+      .get("/api/get/" + this.$route.params.ingredientName, {
+        headers: this.headers
+      })
       .then(response => {
         this.ing = response.data.data[0];
       })

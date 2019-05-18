@@ -32,7 +32,7 @@ export default {
   },
   mounted() {
     axios
-      .get(process.env.VUE_APP_API_ENDPOINT + "/list", {
+      .get("/api/list", {
         headers: this.headers
       })
       .then(response => {
