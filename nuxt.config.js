@@ -7,6 +7,9 @@ module.exports = {
     proxy: true
   },
   proxy: {
-    "/api": "https://api.wynncraft.com/v2/ingredient"
+    "/api/": {
+      target: "https://api.wynncraft.com/v2/ingredient",
+      pathRewrite: { "^/api/": "" }
+    }
   }
 };
