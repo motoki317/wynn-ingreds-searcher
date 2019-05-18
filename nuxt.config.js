@@ -4,9 +4,11 @@ module.exports = {
    */
   modules: ["@nuxtjs/proxy"],
   proxy: {
-    "/api/": {
+    "^/api": {
       target: "https://api.wynncraft.com/v2/ingredient",
-      pathRewrite: { "^/api/": "" }
+      pathRewrite: {
+        "^/api/": "/"
+      }
     }
   }
 };
