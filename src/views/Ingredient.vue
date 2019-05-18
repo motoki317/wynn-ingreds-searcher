@@ -14,7 +14,7 @@
             v-bind:src="
               image + ing.sprite.id + '-' + ing.sprite.damage + '.png'
             "
-          >
+          />
         </div>
       </h1>
       <div class="skills">
@@ -32,7 +32,8 @@
               positive: id.minimum > 0,
               negative: id.minimum < 0
             }"
-          >{{ id.minimum }} ~ {{ id.maximum }}</span>
+            >{{ id.minimum }} ~ {{ id.maximum }}</span
+          >
         </div>
       </div>
       <div class="item-only-ids" v-if="hasItemOnlyIDs">
@@ -45,7 +46,8 @@
                 positive: id > 0,
                 negative: id < 0
               }"
-            >{{ id }}</span>
+              >{{ id }}</span
+            >
           </span>
         </div>
       </div>
@@ -59,7 +61,8 @@
                 positive: id > 0,
                 negative: id < 0
               }"
-            >{{ id }}</span>
+              >{{ id }}</span
+            >
           </span>
         </div>
       </div>
