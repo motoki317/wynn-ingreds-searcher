@@ -1,0 +1,5 @@
+[[redirects]]
+ from = "/api/*"
+ to = "https://api.wynncraft.com/v2/ingredient/:splat"
+ status = 200
+ 
