@@ -1,14 +1,20 @@
 <template>
   <div>
-    <div class="ingreds-list-container">
-      <div v-if="list">
-        <div v-for="ingred in list" :key="ingred">
-          <router-link :to="ingUrl(ingred)">{{ ingred }}</router-link>
-        </div>
-      </div>
-      <div v-else-if="error">{{ error }}</div>
-      <div v-else>Loading...</div>
+    <div class="ingreds-list-container" v-if="list">
+      <h1>List of Ingredients</h1>
+      <h3>Click on an ingredient name for details</h3>
+      <span
+        class="ingredient"
+        v-for="ingred in list"
+        :key="ingred"
+        @click="moveToIngredient(ingred)"
+      >
+        {{ ingred }}
+        <br>
+      </span>
     </div>
+    <div v-else-if="error">{{ error }}</div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 
@@ -22,8 +28,8 @@ export default {
       list: null,
       error: null,
       headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "https://api.wynncraft.com"
+        Origin: process.env.VUE_APP_ORIGIN,
+        "Access-Control-Request-Method": "GET"
       }
     };
   },
@@ -41,9 +47,21 @@ export default {
       });
   },
   methods: {
+    moveToIngredient(ingred) {
+      this.$router.push(this.ingUrl(ingred));
+    },
     ingUrl(ingred) {
       return "/ingredient/" + ingred.split(" ").join("_");
     }
   }
 };
 </script>
+
+<style>
+.ingredient {
+  cursor: pointer;
+}
+.ingredient:hover {
+  font-weight: bold;
+}
+</style>

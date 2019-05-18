@@ -83,8 +83,8 @@ export default {
       error: null,
       image: "https://motoki317.github.io/images/vanilla/",
       headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        "Access-Control-Allow-Origin": "https://api.wynncraft.com"
+        Origin: process.env.VUE_APP_ORIGIN,
+        "Access-Control-Request-Method": "GET"
       }
     };
   },
