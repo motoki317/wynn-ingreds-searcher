@@ -3,15 +3,25 @@
     <div class="ingreds-list-container" v-if="list">
       <h1>List of Ingredients</h1>
       <h3>Click on an ingredient name for details</h3>
-      <span
-        class="ingredient"
-        v-for="ingred in list"
-        :key="ingred"
-        @click="moveToIngredient(ingred)"
-      >
-        {{ ingred }}
-        <br />
-      </span>
+      <div>
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="Search for ingredient..."
+          v-model="search"
+        />
+      </div>
+      <div>
+        <span
+          class="ingredient"
+          v-for="ingred in processedList"
+          :key="ingred"
+          @click="moveToIngredient(ingred)"
+        >
+          {{ ingred }}
+          <br />
+        </span>
+      </div>
     </div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>Loading...</div>
@@ -27,7 +37,8 @@ export default {
     return {
       list: null,
       error: null,
-      headers: {}
+      headers: {},
+      search: null
     };
   },
   mounted() {
@@ -50,6 +61,16 @@ export default {
     ingUrl(ingred) {
       return "/ingredient/" + ingred.split(" ").join("_");
     }
+  },
+  computed: {
+    processedList() {
+      if (this.search == undefined || this.search == "") {
+        return this.list;
+      }
+      return this.list.filter(str =>
+        str.toLowerCase().includes(this.search.toLowerCase())
+      );
+    }
   }
 };
 </script>
@@ -58,7 +79,15 @@ export default {
 .ingredient {
   cursor: pointer;
 }
+
 .ingredient:hover {
   font-weight: bold;
+}
+
+.search-bar {
+  width: 20em;
+  padding: 5px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 </style>
