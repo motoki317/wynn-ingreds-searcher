@@ -87,18 +87,29 @@ export default {
       headers: {}
     };
   },
+  beforeRouteUpdate(to, from, next) {
+    this.updateData(to.params.ingredientName);
+    next();
+  },
   mounted() {
-    axios
-      .get("/api/get/" + this.$route.params.ingredientName, {
-        headers: this.headers
-      })
-      .then(response => {
-        this.ing = response.data.data[0];
-      })
-      .catch(err => {
-        this.error = "Something went wrong while requesting API...";
-        console.error(err);
-      });
+    this.updateData(this.$route.params.ingredientName);
+  },
+  methods: {
+    updateData(ingredientName) {
+      this.ing = null;
+      this.error = null;
+      axios
+        .get("/api/get/" + ingredientName, {
+          headers: this.headers
+        })
+        .then(response => {
+          this.ing = response.data.data[0];
+        })
+        .catch(err => {
+          this.error = "Something went wrong while requesting API...";
+          console.error(err);
+        });
+    }
   },
   computed: {
     hasIdentifications() {
